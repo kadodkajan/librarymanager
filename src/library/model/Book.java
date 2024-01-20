@@ -1,3 +1,5 @@
+package library.model;
+
 public class Book {
     // Attributes
     private int bookID;
