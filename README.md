@@ -27,3 +27,15 @@ Library Manager is a Java console application that empowers you to efficiently m
    ```bash
    git clone https://github.com/yourusername/LibraryManager.git
    cd LibraryManager
+## Project Structure
+
+The project structure has been organized for clarity and modularity. 
+
+- `src/`: Contains the source code of the Java application.
+    - `library/`: Package for the main library management functionalities.
+        - `model/`: Includes Java classes for Book and User entities.
+        - `controller/`: Contains controllers for managing books and users.
+        - `view/`: Holds the ConsoleView class for user interface handling.
+        - `Main.java`: The entry point of the application.
+- `README.md`: Documentation providing information about the project.
+
