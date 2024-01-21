@@ -38,6 +38,33 @@ public class LibraryController {
         }
     }
 
+    public void handleUsersMenu(Scanner scanner) {
+        int userSelection = 0;
+
+        while (userSelection != 4) {
+            ConsoleView. displayUsersMenu();
+            userSelection = ConsoleView.getUserSelection(scanner);
+
+            switch (userSelection) {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
     public void handleLibraryMenu(Scanner scanner) {
         int userSelection = 0;
 
@@ -70,10 +97,5 @@ public class LibraryController {
 //                    view.displayErrorMessage("Invalid selection. Please enter a number between 1 and 6.");
                     break;
             }
-        }
-    }
-
-    public void handleUsersMenu(Scanner scanner) {
-        // Similar structure for handling user menu
-    }
+        }    }
 }
