@@ -42,6 +42,9 @@ public class ConsoleView {
         System.out.println("01: VIEW ALL USERS");
         System.out.println("02: ADD USER");
         System.out.println("03: REMOVE USER");
+        System.out.println("04: BACK MENU");
+
+
         System.out.println("-------------");
         System.out.print("SELECT: ");
     }
