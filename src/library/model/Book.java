@@ -37,7 +37,9 @@ public class Book {
     public boolean isAvailable() {
         return availability;
     }
-
+    public void setAvailable(boolean available) {
+        this.availability = available;
+    }
     // Setter method for changing availability status
     public void setAvailability(boolean availability) {
         this.availability = availability;

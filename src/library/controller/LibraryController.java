@@ -48,15 +48,21 @@ public class LibraryController {
             switch (userSelection) {
                 case 1:
                     ConsoleView.displayBooks(library.getALLBooks());
+                    System.out.print("\nPress any key to continue...");
+                    new Scanner(System.in).nextLine();
                     break;
                 case 2:
                     ConsoleView.displayAddBook(library,scanner);
                     break;
                 case 3:
-
                     ConsoleView.displayRemoveBook(library,scanner);
                     break;
-                // Other library menu cases
+                case 4:
+                    ConsoleView.displayBorrowBook(library,scanner);
+                    break;
+                case 5:
+                    ConsoleView.displayReturnBook(library,scanner);
+                    break;
                 case 6:
                     // Handle back to main menu
                     break;

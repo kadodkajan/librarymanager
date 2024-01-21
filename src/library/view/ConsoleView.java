@@ -60,15 +60,13 @@ public class ConsoleView {
                 System.out.printf("%-5d%-25s%-15s%-15s%-10s\n", book.getBookID(), book.getTitle(), book.getAuthor(), book.getGenre(), availabilityStatus);
             }
         }
-        System.out.print("\nPress any key to continue...");
-        new Scanner(System.in).nextLine();
+
     }
     public static void displayAddBook(Library library,  Scanner scanner) {
         System.out.println("--------------------------");
         System.out.println("\u001B[35m"+"        ADD BOOK"+"\u001B[36m");
         System.out.println("--------------------------");
-        System.out.print("Book Id :");
-        int bookId = scanner.nextInt();
+        int bookId = Helper.getValidIntInput(scanner,"Book Id :");
         System.out.print("Book Title :");
         String bookTitle = scanner.next();
         System.out.print("Book Author :");
@@ -141,7 +139,95 @@ public class ConsoleView {
 
 
     }
-    private static Book findBookById(int bookID, List<Book> books) {
+    public static void displayBorrowBook(Library library,Scanner scanner) {
+        System.out.println(ANSI_CYAN+"--------------------------");
+
+        System.out.println( "\u001B[35m"+"Borrow a Book"+ANSI_CYAN);
+        System.out.println(ANSI_CYAN+"--------------------------");
+
+        List<Book> availableBooks = library.getAvailableBooks();
+
+        if (availableBooks.isEmpty()) {
+            System.out.println("\u001B[33m" + "No books available to borrow in the library." + ANSI_CYAN);
+        } else {
+            System.out.printf(ANSI_CYAN + "%-5s%-25s%-15s%-15s\n", "ID", "Title", "Author", "Genre" + ANSI_CYAN);
+            for (Book book : availableBooks) {
+                System.out.printf("%-5d%-25s%-15s%-15s\n", book.getBookID(), book.getTitle(), book.getAuthor(), book.getGenre());
+            }
+            System.out.print("\u001B[36mEnter the ID (or 0 to cancel): ");
+            int bookIDToBorrow = scanner.nextInt();
+            if (bookIDToBorrow != 0) {
+                Book bookToBorrow = findBookById(bookIDToBorrow, availableBooks);
+                if (bookToBorrow != null) {
+                    library.setBookAvailability(bookToBorrow, false);
+
+                    System.out.println("\u001B[32mBook Borrowed successfully.\u001B[0m");
+                } else {
+                    System.out.println("\u001B[31mBook not found.\u001B[0m");
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+    }
+    public static void displayReturnBook(Library library,Scanner scanner) {
+        System.out.println(ANSI_CYAN+"--------------------------");
+
+        System.out.println( "\u001B[35m"+"Return a Book"+ANSI_CYAN);
+        List<Book> borrowedBooks = library.getBorrowedBooks();
+
+        if (borrowedBooks.isEmpty()) {
+            System.out.println("\u001B[33m" + "No books available to borrow in the library." + ANSI_CYAN);
+        } else {
+            System.out.printf(ANSI_CYAN + "%-5s%-25s%-15s%-15s\n", "ID", "Title", "Author", "Genre" + ANSI_CYAN);
+            for (Book book : borrowedBooks) {
+                System.out.printf("%-5d%-25s%-15s%-15s\n", book.getBookID(), book.getTitle(), book.getAuthor(), book.getGenre());
+            }
+            System.out.print("\u001B[36mEnter the ID (or 0 to cancel): ");
+            int bookIDToBorrow = scanner.nextInt();
+            if (bookIDToBorrow != 0) {
+
+                Book bookToBorrow = findBookById(bookIDToBorrow, borrowedBooks);
+                if (bookToBorrow != null) {
+                    library.setBookAvailability(bookToBorrow, true);
+
+                    System.out.println("\u001B[32mBook returned successfully.\u001B[0m");
+                } else {
+                    System.out.println("\u001B[31mBook not found.\u001B[0m");
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private static Book findBookById(int bookID, List<Book> books) {
         for (Book book : books) {
             if (book.getBookID() == bookID) {
                 return book;

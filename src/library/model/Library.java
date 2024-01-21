@@ -36,8 +36,23 @@ public class Library {
         }
         return availableBooks;
     }
+
+    public List<Book> getBorrowedBooks() {
+        List<Book> borrowedBooks = new ArrayList<>();
+        for (Book book : books) {
+            if (!book.isAvailable()) {
+                borrowedBooks.add(book);
+            }
+        }
+        return borrowedBooks;
+    }
     public List<Book> getALLBooks() {
 
         return books;
+    }
+    public void setBookAvailability(Book book, boolean available) {
+        if (books.contains(book)) {
+            book.setAvailable(available);
+        }
     }
 }
